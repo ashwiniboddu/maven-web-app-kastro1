@@ -1,8 +1,5 @@
-# Use the official Tomcat base image
-FROM tomcat:9.0
-
-# Expose port 8080 to the outside world
-EXPOSE 8080
-
-# Copy the war file to the webapps directory of Tomcat
-COPY app.war /usr/local/tomcat/webapps/
+FROM openjdk:11
+ARG JAR_FILE=target/*war
+COPY ${WAR_FILE} app.war
+EXPOSE 8081
+ENTRYPOINT ["java","-war","/app.war"]
